@@ -13,6 +13,20 @@ export const reducer = (state, action) => {
             isDropdownShowing: false
         }
     }
+
+    if (action.type === "SETPRODUCTS") {
+        return {
+            ...state,
+            products: action.products
+        }
+    }
+
+     if (action.type === "SETFEATUREDPRODUCTS") {
+        return {
+            ...state,
+            featuredProducts: action.products
+        }
+    }
  
     return state
 }
