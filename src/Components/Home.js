@@ -3,7 +3,9 @@ import { useNavigate } from "react-router";
 
 import "./Home.css"
 import { useEffect } from "react";
-import Products from "./Products";
+import Movie from "./Movie";
+import Loader from "./Loader";
+
 
 const Home = () => {
     const navigate = useNavigate()
@@ -40,8 +42,8 @@ const Home = () => {
                 <h1>Featured Products</h1>
                 <div className="underline"></div>
                 <div className="product-section" >
-                    {state.featuredProducts.map((product) => {
-                        return <h1>{ product.title}</h1>
+                    {state.isLoading ? <Loader/> : state.featuredProducts.map((product) => {
+                        return <Movie key={ product.id} {...product} />
                     })}
                 </div>
             </section>

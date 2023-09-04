@@ -27,6 +27,20 @@ export const reducer = (state, action) => {
             featuredProducts: action.products
         }
     }
+
+    if (action.type === "SETISLOADING") {
+        return {
+            ...state, 
+            isLoading: true,
+        }
+    }
+
+    if (action.type === "REMOVEISLOADING") {
+        return {
+            ...state,
+            isLoading: false
+        }
+    }
  
     return state
 }

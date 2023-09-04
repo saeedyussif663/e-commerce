@@ -5,6 +5,7 @@ import { reducer } from "./reducer";
 const AppContex = createContext()
 
 const intialState = {
+    isLoading: false,
     isDropdownShowing: false,
     products: [],
     featuredProducts: []
@@ -24,12 +25,14 @@ const AppProvider = ({ children }) => {
     }
 
     const callProducts = async (limit) => {
+        dispatch({type: "SETISLOADING"})
         const response = await fetch(`https://fakestoreapi.com/products/category/electronics?limit=${limit}`);
         const data = await response.json();
         if (limit === 3) {
-            dispatch({type: "SETFEATUREDPRODUCTS", products: data})
+            dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
         }
-        dispatch({type: "SETPRODUCTS", products: data})
+        dispatch({ type: "SETPRODUCTS", products: data });
+           dispatch({type: "REMOVEISLOADING"})
     }
 
 
