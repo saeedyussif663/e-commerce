@@ -1,6 +1,9 @@
+import { useGlobalContext } from "../Context"
 
 const Home = () => {
-    return <h1>home</h1>
+    const { closeDropdown } = useGlobalContext()
+    
+    return <h1  onClick={closeDropdown}>home</h1>
 }
 
 
