@@ -10,6 +10,7 @@ const intialState = {
     products: [],
     featuredProducts: [],
     singleProduct: {},
+    cart: []
 }
 
 
@@ -25,15 +26,19 @@ const AppProvider = ({ children }) => {
         dispatch({type: "CLOSEDROPDOWN"})
     }
 
-    const callProducts = async (limit) => {
+    const callProducts = async () => {
         dispatch({type: "SETISLOADING"})
-        const response = await fetch(`https://fakestoreapi.com/products/category/electronics?limit=${limit}`);
+        const response = await fetch(`https://fakestoreapi.com/products/`);
         const data = await response.json();
-        if (limit === 3) {
-            dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
-        }
         dispatch({ type: "SETPRODUCTS", products: data });
         dispatch({type: "REMOVEISLOADING"})
+    }
+
+    const callFeaturedProducts = async() => {
+        dispatch({type: "SETISLOADING"})
+        const response = await fetch("https://fakestoreapi.com/products/?limit=3");
+        const data = await response.json();
+        dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
     }
 
     const callSingleProduct = async (id) => {
@@ -44,10 +49,31 @@ const AppProvider = ({ children }) => {
         dispatch({ type: "REMOVEISLOADING" });
     }
 
+    const addToCart = (item) => {
+
+        const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
+
+        if (existingItem) {
+            dispatch({ type: "INCREASEQUANTITY", item, existingItem });
+        } else {
+            dispatch({ type: "ADDTOCART", item });
+        }
+    }
+
+    const setUpCartFromLocalStorage = () => {
+        const cart = localStorage.getItem("cart")
+        if (!cart) {
+           dispatch({type: "SETLOCALSTORAGEASEMPTY"})
+        } else {
+            dispatch({type: "SETLOCALSTORAGE", cart})
+       }
+    } 
+
 
 
     useEffect(() => {
         callProducts(10)
+        setUpCartFromLocalStorage()
     }, [])
 
     return (
@@ -56,7 +82,9 @@ const AppProvider = ({ children }) => {
             toggleDropdown,
             closeDropdown,
             callProducts,
-            callSingleProduct
+            callSingleProduct,
+            addToCart,
+            callFeaturedProducts
         }}>
             {children}
         </AppContex.Provider>

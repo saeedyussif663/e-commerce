@@ -1,7 +1,23 @@
+import { useGlobalContext } from "../Context"
+import Loader from "./Loader"
+import Product from "./Product"
 
-const Products = () => {
+import "./Products.css"
+
+const Products = () => { 
+    const {state} = useGlobalContext()
+
+    if (state.isLoading) return <Loader/>
     return (
-        <h1>Products</h1>
+        <section className="products-section-container">
+            <h3>{state.products.length} products</h3>
+            <div className="underline"></div>
+                 <div className="products-section" >
+                    {state.products.map((product) => {
+                        return <Product key={ product.id} {...product} />
+                    })}
+                </div>
+       </section>
     )
 }
 

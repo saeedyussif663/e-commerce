@@ -9,11 +9,11 @@ import Loader from "./Loader";
 
 const Home = () => {
     const navigate = useNavigate()
-    const { closeDropdown, state, callProducts } = useGlobalContext();
+    const { closeDropdown, state,callFeaturedProducts } = useGlobalContext();
 
     
     useEffect(() => {
-        callProducts(3);
+        callFeaturedProducts()
     }, [])
 
 

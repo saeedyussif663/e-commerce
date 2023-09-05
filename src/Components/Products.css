@@ -1,0 +1,30 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+.products-section-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 72rem;
+    margin: 50px auto;
+    padding: 2rem;
+    border: 1px solid red;
+}
+
+.products-section-container > h3 {
+    color: rgb(8 51 68);
+    font-family: 'Poppins', sans-serif;
+}
+
+.underline {
+    border-top: 1px solid grey;
+    margin-top: 10px;
+}
+
+
+.products-section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -48,6 +48,44 @@ export const reducer = (state, action) => {
             singleProduct: action.product
         }
     }
+
+    if (action.type === "ADDTOCART") {
+        const item = [...state.cart];
+        item.push(action.item)
+        localStorage.setItem("cart", JSON.stringify(item))
+        return {
+            ...state,
+            cart: item
+        }
+    }
+
+    if (action.type === "INCREASEQUANTITY") {
+        const updatedItem = {
+            ...action.existingItem,
+            quantity:  action.existingItem.quantity + action.item.quantity
+        }
+        localStorage.setItem("cart", JSON.stringify(updatedItem))
+        return {
+            ...state,
+            cart: updatedItem
+        }
+    }
+
+    if (action.type === "SETLOCALSTORAGEASEMPTY") {
+        return {
+            ...state,
+            cart: []
+        }
+    }
+
+    if (action.type === "SETLOCALSTORAGE") {
+        return {
+            ...state,
+            cart: JSON.parse(action.cart)
+        }
+    }
+
+    
  
     return state
 }
