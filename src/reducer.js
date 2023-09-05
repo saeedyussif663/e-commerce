@@ -41,6 +41,13 @@ export const reducer = (state, action) => {
             isLoading: false
         }
     }
+
+    if (action.type === "SETSINGLEPRODCT") {
+        return {
+            ...state,
+            singleProduct: action.product
+        }
+    }
  
     return state
 }

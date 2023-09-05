@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
-import "./Movie.css";
+import "./Product.css";
 
-const Movie = ({ image, title, price, id }) => {
+const Product = ({ image, title, price, id }) => {
     const navigate = useNavigate();
 
     const openSingleProduct = () => {
-        navigate(`/product/${id}`)
+        navigate(`/products/${id}`)
     }
 
     return (
@@ -21,4 +21,4 @@ const Movie = ({ image, title, price, id }) => {
     )
 }
 
-export default Movie
+export default Product

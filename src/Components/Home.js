@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 import "./Home.css"
 import { useEffect } from "react";
-import Movie from "./Movie";
+import Product from "./Product";
 import Loader from "./Loader";
 
 
@@ -43,7 +43,7 @@ const Home = () => {
                 <div className="underline"></div>
                 <div className="product-section" >
                     {state.isLoading ? <Loader/> : state.featuredProducts.map((product) => {
-                        return <Movie key={ product.id} {...product} />
+                        return <Product key={ product.id} {...product} />
                     })}
                 </div>
             </section>

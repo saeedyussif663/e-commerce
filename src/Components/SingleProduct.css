@@ -1,0 +1,134 @@
+
+.singleProduct-container {
+    max-width: 72rem;
+    margin: 50px auto;
+    padding: 2rem;
+    display: flex;
+}
+
+.img-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.singleProducts-links-container {
+    display: flex;
+    align-items: center;
+}
+
+.singleProducts-links-container > a {
+    margin-left: 3px;
+    text-decoration: none;
+    margin-right: 3px;
+    color: grey;
+    font-size: 1.2rem;
+}
+
+.singleProducts-links-container > a:hover {
+    text-decoration: underline;
+}
+
+
+.single-image-container {
+    margin-top: 30px;
+    width: 400px;
+   
+}
+
+.single-image-container > img {
+    width: 100%;
+     max-height: 300px;
+}
+
+.single-details-container {
+    margin-left: 6rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.single-details-container > h1 {
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight:500;
+    color: rgb(8 51 68)
+}
+
+
+.single-details-container > p {
+    margin-top: 25px;
+}
+
+.single-details-container > .price {
+    color:  rgb(8 51 68);
+    letter-spacing: 0.2rem;
+    font-size: 1.5rem
+}
+
+.single-details-container > .description {
+      font-family: 'Poppins', sans-serif;
+     color:  black;
+     letter-spacing: 0.2rem;
+     line-height: 1.3;
+}
+
+.single-details-container > input {
+    margin-top: 20px;
+    width: 40%;
+    border: 1px solid #057aff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.single-details-container > input:focus {
+    outline: none;
+}
+
+.single-details-container > button {
+    width: 30%;
+    background-color:  #057aff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .singleProduct-container {
+        flex-direction: column;
+        width: 95%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .single-image-container {
+        width: 100%;
+    }
+
+    
+.single-details-container {
+    margin-left: 0
+}
+
+.single-details-container > h1 {
+    margin-top: 20px;
+}
+
+.single-details-container > p {
+    margin-top: 15px;
+}
+
+.single-details-container > input {
+    margin-top: 10px;
+    width: 60%;
+}
+
+.single-details-container > button {
+    width: 60%;
+
+}
+
+}

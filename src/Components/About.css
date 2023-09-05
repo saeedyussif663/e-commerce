@@ -1,0 +1,25 @@
+
+.about-section {
+    max-width: 72rem;
+    margin: 50px auto;
+    padding: 2rem;
+    display: flex;
+}
+
+
+.about-section > p {
+    max-width: 50%;
+    margin: 30px auto;
+    line-height: 1.5;
+     font-family: 'Poppins', sans-serif;
+    color: rgb(8 51 68)
+}
+
+
+@media screen and (max-width: 720px) {
+    
+    .about-section > p {
+        max-width: 100%;
+        line-height: 1.8;
+    }
+}

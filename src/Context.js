@@ -8,7 +8,8 @@ const intialState = {
     isLoading: false,
     isDropdownShowing: false,
     products: [],
-    featuredProducts: []
+    featuredProducts: [],
+    singleProduct: {},
 }
 
 
@@ -32,7 +33,15 @@ const AppProvider = ({ children }) => {
             dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
         }
         dispatch({ type: "SETPRODUCTS", products: data });
-           dispatch({type: "REMOVEISLOADING"})
+        dispatch({type: "REMOVEISLOADING"})
+    }
+
+    const callSingleProduct = async (id) => {
+        dispatch({ type: "SETISLOADING" })
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`)
+        const data = await response.json();
+        dispatch({ type: "SETSINGLEPRODCT", product: data });
+        dispatch({ type: "REMOVEISLOADING" });
     }
 
 
@@ -46,7 +55,8 @@ const AppProvider = ({ children }) => {
             state,
             toggleDropdown,
             closeDropdown,
-            callProducts
+            callProducts,
+            callSingleProduct
         }}>
             {children}
         </AppContex.Provider>
