@@ -1,10 +1,18 @@
-import { useGlobalContext } from "../Context"
+import { useGlobalContext } from "../Context";
+import { useNavigate } from "react-router";
 
 import "./Cart.css"
 
 const Cart = () => {
-    const { state, deleteItemFromCart} = useGlobalContext();
+    const { state, deleteItemFromCart } = useGlobalContext();
+    
+    const navigate = useNavigate()
 
+    const proceedToCart = () => {
+        navigate("/checkout")
+    }
+
+    const disable = state.cart.length === 0 ? true : false
 
     return (
         <section className="cart-section-container">
@@ -12,7 +20,7 @@ const Cart = () => {
             <div className="underline"></div>
             <div className="items-total-container">
                 <div className="cart-items">
-                    {state.cart.map((item) => {
+                    {state.cart.length === 0 ? <h2>your cart is empty </h2> : state.cart.map((item) => {
                         return (
                             <div className="item-container" key={item.id}>
                                 <i className="fa-solid fa-times" onClick={() => deleteItemFromCart(item.id)}></i>
@@ -46,7 +54,7 @@ const Cart = () => {
                         <p>order total</p>
                         <p>$3987.00</p>
                     </div>
-                    <button>proceed to checkout</button>
+                    <button disabled={disable} onClick={proceedToCart}>proceed to checkout</button>
                 </div>  
             </div>
         </section>
