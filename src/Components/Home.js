@@ -18,7 +18,7 @@ const Home = () => {
 
 
     const navigateToProduct = () => {
-        navigate('/product')
+        navigate('/products')
     }
  
     

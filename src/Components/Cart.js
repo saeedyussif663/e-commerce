@@ -3,7 +3,7 @@ import { useGlobalContext } from "../Context"
 import "./Cart.css"
 
 const Cart = () => {
-    const { state } = useGlobalContext();
+    const { state, deleteItemFromCart} = useGlobalContext();
 
 
     return (
@@ -15,6 +15,7 @@ const Cart = () => {
                     {state.cart.map((item) => {
                         return (
                             <div className="item-container" key={item.id}>
+                                <i className="fa-solid fa-times" onClick={() => deleteItemFromCart(item.id)}></i>
                                 <div className="cart-img-container">
                                     <img src={item.image} alt={item.title} />
                                 </div>

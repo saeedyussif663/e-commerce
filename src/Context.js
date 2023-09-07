@@ -61,6 +61,10 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const deleteItemFromCart = (id) => {
+        dispatch({type: "DELETEFROMCART", id})
+    }
+
     const setUpCartFromLocalStorage = () => {
         const cart = localStorage.getItem("cart")
         if (!cart) {
@@ -85,7 +89,8 @@ const AppProvider = ({ children }) => {
             callProducts,
             callSingleProduct,
             addToCart,
-            callFeaturedProducts
+            callFeaturedProducts,
+            deleteItemFromCart
         }}>
             {children}
         </AppContex.Provider>

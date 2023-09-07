@@ -32,6 +32,14 @@
     margin: 10px;   
     border-bottom: 1px solid grey;
     padding-bottom: 5px;
+    position: relative;
+}
+
+.item-container > i {
+    position: absolute;
+    cursor: pointer;
+    right: 30px;
+    top: -15px;
 }
 
 
@@ -117,8 +125,15 @@
 }
 
     .total-price {
-        margin-left: 10px;
+        width: 100%;
+        padding: 15px;
+        border-radius: 5px;
+        /* margin-left: 10px; */
     }
+
+        .total-price  > div {
+            margin: 4px;
+        }
 
     .item-container {
         justify-content: space-between;

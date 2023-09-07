@@ -34,7 +34,7 @@ const Navbar = () => {
                 <NavLink to="/cart">
                     <i className="fa-solid fa-cart-shopping"></i>
                  </NavLink> 
-                <p>0</p>
+                <p>{state.cart.length }</p>
             </div>
           </div>
         </nav>

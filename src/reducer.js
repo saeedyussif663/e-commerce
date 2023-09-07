@@ -59,6 +59,15 @@ export const reducer = (state, action) => {
         }
     }
 
+    if (action.type === "DELETEFROMCART") {
+        const item = state.cart.filter((item) => item.id !== action.id)
+         localStorage.setItem("cart", JSON.stringify(item))
+        return {
+            ...state,
+            cart: item
+        }
+    }
+
     if (action.type === "INCREASEQUANTITY") {
         const updatedItem = {
             ...action.existingItem,
