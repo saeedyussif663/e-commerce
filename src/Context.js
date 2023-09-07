@@ -39,6 +39,7 @@ const AppProvider = ({ children }) => {
         const response = await fetch("https://fakestoreapi.com/products/?limit=3");
         const data = await response.json();
         dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
+        dispatch({type: "REMOVEISLOADING"})
     }
 
     const callSingleProduct = async (id) => {

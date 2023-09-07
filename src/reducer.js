@@ -64,10 +64,12 @@ export const reducer = (state, action) => {
             ...action.existingItem,
             quantity:  action.existingItem.quantity + action.item.quantity
         }
-        localStorage.setItem("cart", JSON.stringify(updatedItem))
+        const item = [ updatedItem]
+        localStorage.setItem("cart", JSON.stringify(item))
+         console.log("updating");
         return {
             ...state,
-            cart: updatedItem
+            cart: item
         }
     }
 
