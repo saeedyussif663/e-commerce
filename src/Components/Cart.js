@@ -2,6 +2,7 @@ import { useGlobalContext } from "../Context";
 import { useNavigate } from "react-router";
 
 import "./Cart.css"
+import Price from "./Price";
 
 const Cart = () => {
     let subtotal = 0;
@@ -15,15 +16,6 @@ const Cart = () => {
 
     const disable = state.cart.length === 0 ? true : false;
 
-    state.cart.forEach(element => {
-        let elementsubtotal = element.quantity * element.price;
-        subtotal += elementsubtotal;
-        return subtotal
-    });
-
-    const tax = subtotal / 10;
-    const shipping = 9.99;
-    const orderTotal = tax + shipping + subtotal;
 
     
     return (
@@ -44,31 +36,15 @@ const Cart = () => {
                                 <p>quantity: {item.quantity}</p>
                                 <p>price:  ${ item.price}</p>
                                 </div>
-                               
                             </div>
                         )
                     })}
                 </div>
                 <div className="total-price">
-                    <div>
-                        <p>subtotal</p>
-                        <p>${ subtotal.toFixed(2)}</p>
-                    </div>
-                    <div>
-                        <p>shipping</p>
-                        <p>${ shipping.toFixed(2)}</p>
-                    </div>
-                    <div>
-                        <p>tax</p>
-                        <p>${ subtotal.toFixed(2) }</p>
-                    </div>
-                    <div>
-                        <p>order total</p>
-                        <p>${ orderTotal.toFixed(2)}</p>
-                    </div>
-                    <button disabled={disable} onClick={proceedToCart}>proceed to checkout</button>
+                <Price />
+                 <button disabled={disable} onClick={proceedToCart}>proceed to checkout</button>
+                </div>
                 </div>  
-            </div>
         </section>
     )
 }

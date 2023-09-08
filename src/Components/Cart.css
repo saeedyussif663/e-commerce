@@ -77,30 +77,15 @@
 }
 
 
-.total-price {
-     margin-left: auto;
-     display: flex;
-     flex-direction: column;
-     width: 250px;
-     height: 300px;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    background-color: rgb(240, 246, 255);
-}
 
-.total-price > div {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    border-bottom: 0.5px solid grey;
-    padding-bottom: 10px;
-}
 
-.total-price  div > p {
+
+.total-price  div  p {
     text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
 }
 
-.total-price > button {
+.total-price  button {
     padding: 5px;
     border-radius: 5px;
     border:none;
@@ -108,7 +93,7 @@
     background-color: blue;
     color: white;
     width: 80%;
-    margin: 40px auto;
+    margin: 0 auto;
     font-family: 'Poppins', sans-serif;
     text-transform: capitalize;
 }
