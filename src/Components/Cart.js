@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import "./Cart.css"
 
 const Cart = () => {
+    let subtotal = 0;
     const { state, deleteItemFromCart } = useGlobalContext();
     
     const navigate = useNavigate()
@@ -12,8 +13,19 @@ const Cart = () => {
         navigate("/checkout")
     }
 
-    const disable = state.cart.length === 0 ? true : false
+    const disable = state.cart.length === 0 ? true : false;
 
+    state.cart.forEach(element => {
+        let elementsubtotal = element.quantity * element.price;
+        subtotal += elementsubtotal;
+        return subtotal
+    });
+
+    const tax = subtotal / 10;
+    const shipping = 9.99;
+    const orderTotal = tax + shipping + subtotal;
+
+    
     return (
         <section className="cart-section-container">
             <h2>Shopping Cart</h2>
@@ -40,19 +52,19 @@ const Cart = () => {
                 <div className="total-price">
                     <div>
                         <p>subtotal</p>
-                        <p>$123.00</p>
+                        <p>${ subtotal.toFixed(2)}</p>
                     </div>
                     <div>
                         <p>shipping</p>
-                        <p>$5.00</p>
+                        <p>${ shipping.toFixed(2)}</p>
                     </div>
                     <div>
                         <p>tax</p>
-                        <p>$100.00</p>
+                        <p>${ subtotal.toFixed(2) }</p>
                     </div>
                     <div>
                         <p>order total</p>
-                        <p>$3987.00</p>
+                        <p>${ orderTotal.toFixed(2)}</p>
                     </div>
                     <button disabled={disable} onClick={proceedToCart}>proceed to checkout</button>
                 </div>  
