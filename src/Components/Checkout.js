@@ -3,8 +3,13 @@ import Price from "./Price";
 import "./Checkout.css";
 import { useRef } from "react";
 
+import { useGlobalContext } from "../Context";
+
 
 const Checkout = () => {
+
+    const { orderProduct} = useGlobalContext();
+
     const nameRef = useRef("");
     const emailRef = useRef("");
     const addressRef = useRef("");
@@ -31,7 +36,7 @@ const Checkout = () => {
         nameRef.current.value = "";
         emailRef.current.value = "";
         addressRef.current.value = "";
-        console.log(customerDetails);
+        orderProduct(customerDetails);
     }
 
 

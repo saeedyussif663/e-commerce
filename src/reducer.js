@@ -68,6 +68,31 @@ export const reducer = (state, action) => {
         }
     }
 
+    if (action.type === "CLEARCART") {
+        const item = [];
+        localStorage.setItem("cart", JSON.stringify(item));
+        return {
+            ...state, 
+            cart: item
+        }
+    }
+
+    if (action.type === "UPDATECART") {
+        const subtotal = action.subtotal;
+        const shipping = action.subtotal > 0 ? 9.99 : 0;
+        const tax = action.subtotal / 10;
+        const totalCost = subtotal + shipping + tax
+        return {
+            ...state,
+            orderSummary: {
+                subtotal: subtotal,
+                shipping: shipping,
+                tax: tax,
+                totalCost: totalCost,
+            }
+        }
+    }
+
     if (action.type === "INCREASEQUANTITY") {
         const updatedItem = {
             ...action.existingItem,
@@ -75,7 +100,6 @@ export const reducer = (state, action) => {
         }
         const item = [ updatedItem]
         localStorage.setItem("cart", JSON.stringify(item))
-         console.log("updating");
         return {
             ...state,
             cart: item

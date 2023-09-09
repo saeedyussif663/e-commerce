@@ -4,18 +4,7 @@ import "./Price.css"
 
 const Price = () => {
     const {state} = useGlobalContext()
-
-    let subtotal = 0;
-
-      state.cart.forEach(element => {
-        let elementsubtotal = element.quantity * element.price;
-        subtotal += elementsubtotal;
-        return subtotal
-    });
-
-    const tax = subtotal / 10;
-    const shipping = subtotal !== 0 ? 9.99 : 0.00;
-    const orderTotal = tax + shipping + subtotal;
+    const {subtotal, shipping, tax, totalCost} = state.orderSummary
 
     return (
         <div className="price-container">
@@ -29,11 +18,11 @@ const Price = () => {
                     </div>
                     <div>
                         <p>tax</p>
-                        <p>${ subtotal.toFixed(2) }</p>
+                        <p>${ tax.toFixed(2) }</p>
                     </div>
                     <div>
                         <p>order total</p>
-                        <p>${ orderTotal.toFixed(2)}</p>
+                        <p>${ totalCost.toFixed(2)}</p>
             </div>
         </div>
     )

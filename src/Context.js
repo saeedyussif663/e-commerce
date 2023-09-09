@@ -3,6 +3,8 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import emailjs from 'emailjs-com';
+
 import { reducer } from "./reducer";
 import axios from 'axios';
 
@@ -15,13 +17,26 @@ const intialState = {
     products: [],
     featuredProducts: [],
     singleProduct: {},
-    cart: []
+    cart: [],
+    orderSummary: {
+        subtotal: 0,
+        shipping: 0,
+        tax: 0,
+        totalCost: 0
+    }
 }
 
 
 const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(reducer, intialState);
+
+    const  Pickupdate = () => {
+        const today = new Date();
+        const futureDate = new Date(today);
+        futureDate.setDate(today.getDate() + 4);
+        return futureDate;
+    }
 
      const toggleDropdown = () => {
         dispatch({type: "TOGGLEDROPDOWN"})
@@ -30,6 +45,7 @@ const AppProvider = ({ children }) => {
     const closeDropdown = () => {
         dispatch({type: "CLOSEDROPDOWN"})
     }
+
 
     const callProducts = async () => {
         dispatch({type: "SETISLOADING"})
@@ -87,6 +103,54 @@ const AppProvider = ({ children }) => {
        }
     } 
 
+    const updateCartDetails = () => {
+        
+        let subtotal = 0;
+        state.cart.forEach(element => {
+        let elementsubtotal = element.quantity * element.price;
+        subtotal += elementsubtotal;
+        return subtotal
+        });
+
+        dispatch({ type: "UPDATECART", subtotal });
+    }
+    const timestamp = Pickupdate();
+    const pickupdate = timestamp.toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            });
+    const orderProduct = async (orderDetails) => {
+    const emailResponse = await emailjs.send(
+      'service_fdvi5bv',
+      'template_jsw03li',
+    {
+        'receipient_email': orderDetails.email,
+        'User Name': orderDetails.name, 
+        'Total Amount': state.orderSummary.totalCost.toFixed(2),    
+        'Pickup Address': orderDetails.address, 
+        'Pickup Date': pickupdate, 
+      },
+      '4SvSClbtHgRa82Jel'
+        );
+        if (emailResponse.text === 'OK') { 
+            window.location.href = '/';
+            dispatch({ type: "CLEARCART" });
+
+              toast.success('order successful, check e-mail for confirmation', {
+                position: toast.POSITION.TOP_CENTER
+                });
+        } else {
+                toast.error('order unsuccessful, try again later', {
+            position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
+
+    useEffect(() => {
+        updateCartDetails();
+    }, [state.cart])
 
 
     useEffect(() => {
@@ -103,7 +167,8 @@ const AppProvider = ({ children }) => {
             callSingleProduct,
             addToCart,
             callFeaturedProducts,
-            deleteItemFromCart
+            deleteItemFromCart,
+            orderProduct
         }}>
             {children}
         </AppContex.Provider>
