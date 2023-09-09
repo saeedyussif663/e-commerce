@@ -73,6 +73,10 @@ form > button {
 
     form {
         margin-right: 10px;
-        width: 80%;
+        width: 100%;
     }
+
+    form  input {
+    font-size: 1.1rem;
+}
 }

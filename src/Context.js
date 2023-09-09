@@ -135,12 +135,11 @@ const AppProvider = ({ children }) => {
       '4SvSClbtHgRa82Jel'
         );
         if (emailResponse.text === 'OK') { 
-            window.location.href = '/';
             dispatch({ type: "CLEARCART" });
 
               toast.success('order successful, check e-mail for confirmation', {
                 position: toast.POSITION.TOP_CENTER
-                });
+              });
         } else {
                 toast.error('order unsuccessful, try again later', {
             position: toast.POSITION.TOP_CENTER
