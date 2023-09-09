@@ -10,6 +10,7 @@ import SingleProduct from "./Components/SingleProduct"
 import Checkout from "./Components/Checkout";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
+import ErrorPage from "./Components/ErrorPage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>} />
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
       <ToastContainer/>
     </div>
