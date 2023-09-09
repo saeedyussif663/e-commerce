@@ -8,6 +8,7 @@ import Products from "./Components/Products";
 import Cart from "./Components/Cart";
 import SingleProduct from "./Components/SingleProduct"
 import Checkout from "./Components/Checkout";
+import { ToastContainer } from "react-toastify";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="checkout" element={<Checkout/>} />
       </Routes>
+      <ToastContainer/>
     </div>
   );
 }

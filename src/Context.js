@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { reducer } from "./reducer";
 
 const AppContex = createContext()
@@ -59,10 +62,18 @@ const AppProvider = ({ children }) => {
         } else {
             dispatch({ type: "ADDTOCART", item });
         }
+
+        toast.success('Item added to cart sucessfully', {
+         position: toast.POSITION.TOP_CENTER
+        });
     }
 
     const deleteItemFromCart = (id) => {
-        dispatch({type: "DELETEFROMCART", id})
+        dispatch({ type: "DELETEFROMCART", id })
+        
+          toast.error('Item deleted from cart sucessfully', {
+         position: toast.POSITION.TOP_CENTER
+        });
     }
 
     const setUpCartFromLocalStorage = () => {

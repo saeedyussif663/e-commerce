@@ -14,7 +14,7 @@ const Price = () => {
     });
 
     const tax = subtotal / 10;
-    const shipping = 9.99;
+    const shipping = subtotal !== 0 ? 9.99 : 0.00;
     const orderTotal = tax + shipping + subtotal;
 
     return (
