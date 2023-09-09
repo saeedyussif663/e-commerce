@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { reducer } from "./reducer";
+import axios from 'axios';
+
 
 const AppContex = createContext()
 
@@ -37,18 +39,18 @@ const AppProvider = ({ children }) => {
         dispatch({type: "REMOVEISLOADING"})
     }
 
-    const callFeaturedProducts = async() => {
+    const callFeaturedProducts = async () => {
         dispatch({type: "SETISLOADING"})
-        const response = await fetch("https://fakestoreapi.com/products/?limit=3");
-        const data = await response.json();
+        const response =  await axios.get("https://fakestoreapi.com/products/?limit=3");
+        const { data } = response;
         dispatch({ type: "SETFEATUREDPRODUCTS", products: data });
         dispatch({type: "REMOVEISLOADING"})
     }
 
     const callSingleProduct = async (id) => {
         dispatch({ type: "SETISLOADING" })
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`)
-        const data = await response.json();
+        const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
+        const { data } = response;
         dispatch({ type: "SETSINGLEPRODCT", product: data });
         dispatch({ type: "REMOVEISLOADING" });
     }
